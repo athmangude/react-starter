@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 import NavLink from './NavLink';
 
@@ -11,6 +11,7 @@ export default React.createClass({
                 <ul role="nav">
                     <li><NavLink to="/about" activeClassName="active">About</NavLink></li>
                     <li><NavLink to="/repos" activeClassName="active">Repos</NavLink></li>
+                    <li><NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink></li>
                 </ul>
                 {this.props.children}
             </div>

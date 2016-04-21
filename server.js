@@ -26,14 +26,30 @@ app.use(express.static(__dirname, 'public'));
 app.get('*', function (request, response) {
     // match the routes to the url
     match({routes: routes, location: request.url}, (error, redirect, props) => {
-        // `RouterContext` is what `Router` renders. `Router` keeps these `props` in its state as it
-        // listens to `browserHistory`. But on the server our app is stateless, so we need to use
-        // `match` to get these props before rendering
-        const appHtml = renderToString(<RouterContext {...props} />);
+        // here we can make some decisions all at once
+        if (error) {
+            // there was an error somewhere during the route matching
+            response.status(500).send(err.message);
+        } else if (redirect) {
+            // checkout `onEnter` hooks on routes
+            // before a route is entered it can redirect.
+            // Here we handle on the server
+            response.redirect(redirect.pathname + redirect.search);
+        } else if (props) {
+            // if we got props then we match a route and can render
 
-        // dump the HTML into a template, lots of ways to do this, but none are really influenced by
-        // React Router, so we're just using a little function, `renderPage`
-        response.send(renderPage(appHtml));
+            // `RouterContext` is what `Router` renders. `Router` keeps these `props` in its state as it
+            // listens to `browserHistory`. But on the server our app is stateless, so we need to use
+            // `match` to get these props before rendering
+            const appHtml = renderToString(<RouterContext {...props} />);
+
+            // dump the HTML into a template, lots of ways to do this, but none are really influenced by
+            // React Router, so we're just using a little function, `renderPage`
+            response.send(renderPage(appHtml));
+        } else {
+            // no errors,  no redirect, we just didn't match anythinf
+            res.status(404).send('Not Found');
+        }
     });
 });
 

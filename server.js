@@ -20,7 +20,7 @@ var app = express();
 app.use(compression());
 
 // serve our static stuff like index.css
-app.use(express.static(__dirname, 'public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // send all requests to index.html so browserHistory in React Router works
 app.get('*', function (request, response) {
@@ -48,7 +48,7 @@ app.get('*', function (request, response) {
             response.send(renderPage(appHtml));
         } else {
             // no errors,  no redirect, we just didn't match anythinf
-            res.status(404).send('Not Found');
+            response.status(404).send('Not Found');
         }
     });
 });

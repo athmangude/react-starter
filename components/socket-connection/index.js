@@ -6,8 +6,8 @@ class SocketConnection {
             console.log('socket opened');
         }
 
-        this.socketConnection.onmessage = function () {
-            console.log('message received');
+        this.socketConnection.onmessage = function (message) {
+            console.log('message received', message);
         }
 
         this.socketConnection.onclose = function () {
@@ -21,6 +21,10 @@ class SocketConnection {
 
     getSocketUrl() {
         return window.location.host.includes('app.bambapos.com') ? 'ws://178.238.233.77:8090/websocket' : 'ws://91.194.91.50:8090/websocket';
+    }
+
+    send(payload) {
+        this.socketConnection.send(JSON.stringify(payload));
     }
 }
 

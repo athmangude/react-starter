@@ -1,5 +1,7 @@
+import * as authenticationActions from '../../actions/authentication-actions';
+
 class SocketConnection {
-    constructor() {
+    constructor(store) {
         this.socketConnection = new WebSocket(this.getSocketUrl());
 
         this.socketConnection.onopen = function () {
@@ -8,6 +10,14 @@ class SocketConnection {
 
         this.socketConnection.onmessage = function (message) {
             console.log('message received', message);
+
+            switch (message.channel) {
+                case 'SIGNING_IN':
+                    store.dispatch(authenticationActions.signIn(message));
+                    break;
+                default:
+
+            }
         }
 
         this.socketConnection.onclose = function () {

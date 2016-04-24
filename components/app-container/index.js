@@ -10,7 +10,7 @@ import AppBarSignedOut from '../app-bar-signed-out';
 import Authentication from '../authentication';
 import SocketConnection from '../socket-connection';
 
-class AppBeta extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -55,4 +55,4 @@ class AppBeta extends Component {
     }
 }
 
-export default AppBeta;
+export default App;

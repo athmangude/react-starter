@@ -1,3 +1,5 @@
+import SocketConnection from '../socket-connection';
+
 class Authentication {
     isLoggedIn() {
         if (localStorage.getItem('isLoggedIn'))
@@ -5,12 +7,16 @@ class Authentication {
         return false;
     }
 
-    logOut() {
+    signOut() {
         localStorage.removeItem('isLoggedIn');
     }
 
-    login() {
-        localStorage.setItem('isLoggedIn', true);
+    signIn(credentials) {
+        SocketConnection.send({
+            "email": credentials.email,
+            "password": credentials.password,
+            "channel": "LOGIN"
+        });
     }
 }
 

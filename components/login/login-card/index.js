@@ -1,30 +1,42 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardText, TextField, Avatar, CircularProgress } from 'material-ui';
 
+import Authentication from '../../authentication';
+
 class LoginCard extends Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoading: false
+            isSigningIn: false,
+            email: '',
+            password: ''
         }
+    }
+
+    onEmailChanged(event) {
+        this.setState({
+            email: event.target.value
+        });
+    }
+
+    onPasswordChanged(event) {
+        this.setState({
+            password: event.target.value
+        });
     }
 
     onSignInClicked() {
         this.setState({
-            isLoading: true
+            isSigningIn: true
         });
 
-        setTimeout(() => {
-            this.setState({
-                isLoading: false
-            });
-        }, 2000);
+        Authentication.signIn(this.state);
     }
 
     render() {
         var cardActionComponent;
-        if (this.state.isLoading) {
+        if (this.state.isSigningIn) {
             cardActionComponent = <CircularProgress />
         } else {
             cardActionComponent = <FlatButton label="Sign In" onClick={this.onSignInClicked.bind(this)} />
@@ -55,11 +67,13 @@ class LoginCard extends Component{
                       hintText="Type your email"
                       floatingLabelText="Email"
                       type="email"
+                      onChange={this.onEmailChanged.bind(this)}
                     /><br/>
                     <TextField
                       hintText="Type your password"
                       floatingLabelText="Password"
                       type="password"
+                      onChange={this.onPasswordChanged.bind(this)}
                     /><br/>
                 </CardText>
                 <CardActions style={{

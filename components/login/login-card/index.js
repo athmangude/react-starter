@@ -8,7 +8,6 @@ class LoginCard extends Component{
         super(props);
 
         this.state = {
-            isSigningIn: false,
             email: '',
             password: ''
         }
@@ -27,16 +26,12 @@ class LoginCard extends Component{
     }
 
     onSignInClicked() {
-        this.setState({
-            isSigningIn: true
-        });
-
-        Authentication.signIn(this.state);
+        this.props.signIn(this.state);
     }
 
     render() {
         var cardActionComponent;
-        if (this.state.isSigningIn) {
+        if (this.props.authentication.isSigningIn) {
             cardActionComponent = <CircularProgress />
         } else {
             cardActionComponent = <FlatButton label="Sign In" onClick={this.onSignInClicked.bind(this)} />

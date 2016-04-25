@@ -1,20 +1,6 @@
-export const signingIn = (credentials) => {
+export const signIn = (credentials) => {
     return {
-        type: 'SIGNING_IN',
-        credentials
-    }
-}
-
-export const signedIn = (credentials) => {
-    return {
-        type: 'SIGNED_IN',
-        credentials
-    }
-}
-
-export const sendSignInRequest = (credentials) => {
-    return {
-        type: 'SEND_SIGN_IN_REQUEST',
+        type: 'SIGN_IN',
         credentials
     }
 }

@@ -1,15 +1,24 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import LoginCard from '../login-card';
 
 import Paper from 'material-ui/lib/paper';
 
+import * as authenticationActions from '../../../actions/authentication-actions';
+
+@connect(state => ({authentication: state.authentication}))
 class LoginPage extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+
+        const {authentication, dispatch} = this.props;
+
+
         return (
             <div style={{
                 minHeight: 'calc(100vh - 100px)',
@@ -18,8 +27,11 @@ class LoginPage extends Component {
                 justifyContent: 'center'
             }}>
                 <div>
-                    <LoginCard />
+                    <LoginCard
+                        authentication={authentication}
+                        {...bindActionCreators(authenticationActions, dispatch)} />
                     <Paper
+                        {...bindActionCreators(authenticationActions, dispatch)}
                         style={{
                             textAlign: 'center',
                             marginTop: 10,

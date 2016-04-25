@@ -11,7 +11,6 @@ import AppBarSignedIn from '../app-bar-signed-in';
 import AppBarSignedOut from '../app-bar-signed-out';
 
 import Authentication from '../authentication';
-import SocketConnection from '../socket-connection';
 
 @connect(state => ({authentication: state.authentication}))
 class App extends Component {

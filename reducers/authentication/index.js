@@ -5,7 +5,7 @@ const initialState = {
 
 const authentication = (state = initialState, action) => {
     switch (action.type) {
-        case 'SIGNING_IN':
+        case 'SIGN_IN':
             return Object.assign({}, state, { isSigningIn: true });
         default:
             return state;

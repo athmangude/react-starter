@@ -1,77 +1,39 @@
 import * as authenticationActions from '../../actions/authentication-actions';
 
-// let socketConnection = null;
-//
-// let getSocketUrl = () => {
-//     return window.location.host.includes('app.bambapos.com') ? 'ws://178.238.233.77:8090/websocket' : 'ws://91.194.91.50:8090/websocket';
-// }
-//
-// let send = (payload) => {
-//     socketConnection.send(JSON.stringify(payload));
-// }
-//
-// export default (store) => {
-//     socketConnection = new WebSocket(getSocketUrl());
-//
-//     socketConnection.onopen = function () {
-//         console.log('socket opened');
-//     }
-//
-//     socketConnection.onmessage = function (message) {
-//         console.log('message received', message);
-//
-//         switch (message.channel) {
-//             case 'SIGNING_IN':
-//                 store.dispatch(authenticationActions.signIn(message));
-//                 break;
-//             default:
-//
-//         }
-//     }
-//
-//     socketConnection.onclose = function () {
-//         console.log('socket closed');
-//     }
-//
-//     socketConnection.onerror = function () {
-//         console.log('socket erred');
-//     }
-// }
+let socketConnection = null;
 
-export default (store) => class SocketConnection {
-    constructor(store) {
-        this.socketConnection = new WebSocket(this.getSocketUrl());
+let getSocketUrl = () => {
+    return window.location.host.includes('app.bambapos.com') ? 'ws://178.238.233.77:8090/websocket' : 'ws://91.194.91.50:8090/websocket';
+}
 
-        this.socketConnection.onopen = function () {
-            console.log('socket opened');
-        }
+let send = (payload) => {
+    socketConnection.send(JSON.stringify(payload));
+}
 
-        this.socketConnection.onmessage = function (message) {
-            console.log('message received', message);
+export default (store) => {
+    socketConnection = new WebSocket(getSocketUrl());
 
-            switch (message.channel) {
-                case 'SIGNING_IN':
-                    store.dispatch(authenticationActions.signIn(message));
-                    break;
-                default:
+    socketConnection.onopen = function () {
+        console.log('socket opened');
+    }
 
-            }
-        }
+    socketConnection.onmessage = function (message) {
+        console.log('message received', message);
 
-        this.socketConnection.onclose = function () {
-            console.log('socket closed');
-        }
+        switch (message.channel) {
+            case 'SIGNING_IN':
+                store.dispatch(authenticationActions.signIn(message));
+                break;
+            default:
 
-        this.socketConnection.onerror = function () {
-            console.log('socket erred');
         }
     }
 
-    getSocketUrl() {
-        return window.location.host.includes('app.bambapos.com') ? 'ws://178.238.233.77:8090/websocket' : 'ws://91.194.91.50:8090/websocket';
+    socketConnection.onclose = function () {
+        console.log('socket closed');
     }
 
-    send(payload) {
-        this.socketConnection.send(JSON.stringify(payload));
+    socketConnection.onerror = function () {
+        console.log('socket erred');
     }
 }

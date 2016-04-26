@@ -4,6 +4,7 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardTe
 import Authentication from '../../authentication';
 
 class LoginCard extends Component{
+
     constructor(props) {
         super(props);
 
@@ -27,6 +28,25 @@ class LoginCard extends Component{
 
     onSignInClicked() {
         this.props.signIn(this.state);
+    }
+
+    componentWillUpdate() {
+        let { authentication } = this.props;
+        console.log('component Will update', authentication);
+
+        if (authentication.isLoggedIn) {
+            this.context.router.push('/');
+        }
+    }
+
+    componentDidUpdate() {
+
+        let { authentication } = this.props;
+        console.log('component Did update', authentication);
+
+        if (authentication.isLoggedIn) {
+            this.context.router.push('/');
+        }
     }
 
     render() {
@@ -88,4 +108,8 @@ class LoginCard extends Component{
     }
 }
 
+// ask for `router` context
+LoginCard.contextTypes = {
+    router: React.PropTypes.object
+}
 export default LoginCard;

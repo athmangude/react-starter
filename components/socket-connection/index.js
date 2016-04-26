@@ -15,7 +15,6 @@ export const socketConnectionMiddleWare = (store) => {
         const result = next(action);
 
         if (socketConnection) {
-            console.log(action);
             switch (action.type) {
                 case 'SIGN_IN':
                     store.dispatch(authenticationActions.beginSignIn())

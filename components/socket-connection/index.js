@@ -18,6 +18,7 @@ export const socketConnectionMiddleWare = (store) => {
             console.log(action);
             switch (action.type) {
                 case 'SIGN_IN':
+                    store.dispatch(authenticationActions.beginSignIn())
                     send(Object.assign(action.credentials, { channel: 'LOGIN' }));
                     break;
                 default:
@@ -45,7 +46,7 @@ export default (store) => {
 
         switch (data.channel) {
             case 'LOGIN':
-                store.dispatch(authenticationActions.completeSignIn(data));
+                store.dispatch(authenticationActions.processSignInResponse(data));
                 break;
             default:
 

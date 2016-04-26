@@ -6,13 +6,18 @@ import { connect } from 'react-redux';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import { AppBar, FlatButton, NavigationClose, IconButton, IconMenu, MenuItem, CircularProgress } from 'material-ui';
 
+// import injectTapEventPlugin from 'react-tap-event-plugin';
+
 import AppLoading from '../loaders/app-loading';
 import AppBarSignedIn from '../app-bar-signed-in';
 import AppBarSignedOut from '../app-bar-signed-out';
+import SideBar from '../side-bar';
 
 import Authentication from '../authentication';
 
 import * as appActions from '../../actions/app-actions';
+
+// injectTapEventPlugin();
 
 @connect(state => ({app: state.app ,authentication: state.authentication}))
 class App extends Component {
@@ -33,6 +38,7 @@ class App extends Component {
             return (
                 <div>
                     <AppBarSignedIn />
+                    <SideBar />
                     {this.props.children}
                 </div>
             );

@@ -25,7 +25,6 @@ class App extends Component {
 
     componentDidMount() {
         var loginState = Authentication.isLoggedIn();
-        console.log(loginState);
         if (Authentication.isLoggedIn) {
             this.setState({
                 isLoading: false,
@@ -35,12 +34,11 @@ class App extends Component {
     }
 
     render() {
-
         if (this.state.isLoading) {
             return (
                 <AppLoading />
             );
-        } else if (this.state.isLoggedIn) {
+        } else if (this.props.authentication.isLoggedIn) {
             return (
                 <div>
                     <AppBarSignedIn />

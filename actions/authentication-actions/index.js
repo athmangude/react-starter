@@ -25,7 +25,6 @@ export const signOut = () => {
 }
 
 export const processSignInResponse = (credentials) => {
-    console.info('processing sign in response');
     return (dispatch) => {
         // we could dispatch an action to let the store know that the action has began
         // dispatch.actionBegan(credentials)

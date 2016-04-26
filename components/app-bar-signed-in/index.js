@@ -10,34 +10,25 @@ import * as appActions from '../../actions/app-actions';
 
 @connect(state => ({app: state.app}))
 class AppBarSignedIn extends Component {
-    handleToggle = () => {
-        this.props.dispatch(appActions.toggleSideBar());
-    }
-
     render () {
-
         return (
             <AppBar
-            title="Bambapos"
-            iconElementLeft={
-                <IconButton
-                    onFocus={this.handleToggle} >
-                    <NavigationClose />
-                </IconButton>
-            }
-            iconElementRight={
-                <IconMenu
-                iconButtonElement={
-                    <IconButton><MoreVertIcon /></IconButton>
+                title="Bambapos"
+                onLeftIconButtonTouchTap={this.props.handleToggle}
+                iconElementRight={
+                    <IconMenu
+                    iconButtonElement={
+                        <IconButton><MoreVertIcon /></IconButton>
+                    }
+                    targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                    >
+                    <MenuItem primaryText="Refresh" />
+                    <MenuItem primaryText="Help" />
+                    <MenuItem primaryText="Sign out" />
+                    </IconMenu>
                 }
-                targetOrigin={{horizontal: 'right', vertical: 'top'}}
-                anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-                >
-                <MenuItem primaryText="Refresh" />
-                <MenuItem primaryText="Help" />
-                <MenuItem primaryText="Sign out" />
-                </IconMenu>
-            } />
+            />
         );
     }
 }

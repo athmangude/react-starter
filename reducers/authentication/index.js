@@ -5,7 +5,7 @@ const initialState = {
 
 const authentication = (state = initialState, action) => {
     switch (action.type) {
-        case 'SIGN_IN':
+        case 'BEGIN_SIGN_IN':
             return Object.assign({}, state, { isSigningIn: true });
         case 'COMPLETE_SIGN_IN':
             if (action.data.status) {

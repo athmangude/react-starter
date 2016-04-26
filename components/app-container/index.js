@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
 import { AppBar, FlatButton, NavigationClose, IconButton, IconMenu, MenuItem, CircularProgress } from 'material-ui';
 
-// import injectTapEventPlugin from 'react-tap-event-plugin';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import AppLoading from '../loaders/app-loading';
 import AppBarSignedIn from '../app-bar-signed-in';
@@ -17,12 +17,16 @@ import Authentication from '../authentication';
 
 import * as appActions from '../../actions/app-actions';
 
-// injectTapEventPlugin();
+injectTapEventPlugin();
 
 @connect(state => ({app: state.app ,authentication: state.authentication}))
 class App extends Component {
     constructor(props) {
         super(props);
+    }
+
+    handleToggle = () => {
+        this.props.dispatch(appActions.toggleSideBar());
     }
 
     componentDidMount() {
@@ -37,7 +41,7 @@ class App extends Component {
         } else if (this.props.authentication.isLoggedIn) {
             return (
                 <div>
-                    <AppBarSignedIn />
+                    <AppBarSignedIn handleToggle={this.handleToggle} />
                     <SideBar />
                     {this.props.children}
                 </div>

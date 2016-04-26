@@ -12,22 +12,20 @@ import AppBarSignedOut from '../app-bar-signed-out';
 
 import Authentication from '../authentication';
 
-@connect(state => ({authentication: state.authentication}))
+import * as appActions from '../../actions/app-actions';
+
+@connect(state => ({app: state.app ,authentication: state.authentication}))
 class App extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isLoading: false
-        }
     }
 
     componentDidMount() {
-        
+        this.props.dispatch(appActions.loadApp());
     }
 
     render() {
-        if (this.state.isLoading) {
+        if (this.props.app.isLoading) {
             return (
                 <AppLoading />
             );

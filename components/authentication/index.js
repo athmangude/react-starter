@@ -2,13 +2,13 @@ import SocketConnection from '../socket-connection';
 
 class Authentication {
     isLoggedIn() {
-        if (localStorage.getItem('isLoggedIn'))
+        if (localStorage.getItem('isSignedIn'))
             return true;
         return false;
     }
 
     signOut() {
-        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('isSignedIn');
     }
 
     signIn(credentials) {

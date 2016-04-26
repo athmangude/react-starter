@@ -18,19 +18,12 @@ class App extends Component {
         super(props);
 
         this.state = {
-            isLoading: true,
-            isLoggedIn: false
+            isLoading: false
         }
     }
 
     componentDidMount() {
-        var loginState = Authentication.isLoggedIn();
-        if (Authentication.isLoggedIn) {
-            this.setState({
-                isLoading: false,
-                isLoggedIn: loginState,
-            });
-        }
+        
     }
 
     render() {

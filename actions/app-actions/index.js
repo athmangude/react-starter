@@ -7,16 +7,20 @@ export const finishLoading = (status) => {
     }
 }
 
+export const toggleSideBar = () => {
+    return {
+        type: 'TOGGLE_SIDE_BAR'
+    }
+}
+
 export const loadApp = () => {
     return (dispatch) => {
-        setTimeout(function () {
-            if (localStorage.getItem('isSignedIn') && localStorage.getItem('user') ) {
-                dispatch(finishLoading(localStorage.getItem('isSignedIn')));
-                dispatch(authenticationActions.completeSignIn(JSON.parse(localStorage.getItem('user'))));
-                return;
-            }
+        if (localStorage.getItem('isSignedIn') && localStorage.getItem('user') ) {
+            dispatch(finishLoading(localStorage.getItem('isSignedIn')));
+            dispatch(authenticationActions.completeSignIn(JSON.parse(localStorage.getItem('user'))));
+            return;
+        }
 
-            return dispatch(finishLoading(false))
-        }, 1000);
+        return dispatch(finishLoading(false))
     }
 }

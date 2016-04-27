@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { AppBar, FlatButton, NavigationClose, IconButton, IconMenu, MenuItem, CircularProgress } from 'material-ui';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';

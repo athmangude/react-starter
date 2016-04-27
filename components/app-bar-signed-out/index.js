@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import MoreVertIcon from 'material-ui/lib/svg-icons/navigation/more-vert';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { AppBar, FlatButton, NavigationClose, IconButton, IconMenu, MenuItem, CircularProgress } from 'material-ui';
 
 class AppBarSignedOut extends Component {

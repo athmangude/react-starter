@@ -11,7 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import AppLoading from '../loaders/app-loading';
 import AppBarSignedIn from '../app-bar-signed-in';
 import AppBarSignedOut from '../app-bar-signed-out';
-import SideBar from '../side-bar';
+import AppDrawer from '../app-drawer';
 
 import Authentication from '../authentication';
 
@@ -42,7 +42,7 @@ class App extends Component {
             return (
                 <div>
                     <AppBarSignedIn handleToggle={this.handleToggle} />
-                    <SideBar />
+                    <AppDrawer />
                     {this.props.children}
                 </div>
             );

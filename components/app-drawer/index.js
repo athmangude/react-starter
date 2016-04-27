@@ -16,7 +16,7 @@ const iconStyles = {
 };
 
 @connect(state => ({app: state.app}))
-class SideBar extends React.Component {
+class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -134,4 +134,4 @@ class SideBar extends React.Component {
     }
 }
 
-export default SideBar;
+export default AppDrawer;

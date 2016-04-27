@@ -1,6 +1,6 @@
 const initialState = {
     isLoading: true,
-    isSideBarOpen: false
+    isSideBarOpen: true
 }
 
 const app = (state = initialState, action) => {

@@ -1,7 +1,9 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './app-container';
+import NotFoundPage from './not-found-page';
+
 import About from './About';
 import Repos from './Repos';
 import Repo from './Repo';
@@ -19,12 +21,15 @@ function requireAuth(nextState, replace) {
 }
 
 module.exports = (
-    <Route path="/" component={App}>
+    <div>
+        <Route path="/" component={App}>
         <IndexRoute component={Home} onEnter={requireAuth} />
         <Route path="/repos" component={Repos}>
-            <Route path="/repos/:userName/:repoName" component={Repo} />
+        <Route path="/repos/:userName/:repoName" component={Repo} />
         </Route>
         <Route path="/about" component={About} />
         <Route path="/login" component={LoginPage} />
-    </Route>
+        </Route>
+        <Route path="*" component={NotFoundPage} />
+    </div>
 );

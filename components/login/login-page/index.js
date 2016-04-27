@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import LoginCard from '../login-card';
 
-import Paper from 'material-ui/lib/paper';
+import { Paper } from 'material-ui';
 
 import * as authenticationActions from '../../../actions/authentication-actions';
 

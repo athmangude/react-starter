@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardText, TextField, Avatar, CircularProgress } from 'material-ui';
 
 import Authentication from '../../authentication';
@@ -58,52 +61,54 @@ class LoginCard extends Component{
         }
 
         return (
-            <Card style={{
-                marginLeft: 20,
-                marginRight: 20,
-                marginTop: 50,
-                maxWidth: 600,
-            }}>
-                <CardTitle
-                    style={{
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <Card style={{
+                    marginLeft: 20,
+                    marginRight: 20,
+                    marginTop: 50,
+                    maxWidth: 600,
+                }}>
+                    <CardTitle
+                        style={{
+                            textAlign: 'center'
+                        }}>
+                        <Avatar
+                            src="http://app.bambapos.com/images/bambapos_logo.png"
+                            size={80} />
+                        <h3 style={{
+                            margin: 0,
+                            marginTop: 10,
+                            fontWeight: 400
+                        }}>Bambapos</h3>
+                    </CardTitle>
+                    <CardText>
+                        <TextField
+                          hintText="Type your email"
+                          floatingLabelText="Email"
+                          type="email"
+                          onChange={this.onEmailChanged.bind(this)}
+                        /><br/>
+                        <TextField
+                          hintText="Type your password"
+                          floatingLabelText="Password"
+                          type="password"
+                          onChange={this.onPasswordChanged.bind(this)}
+                        /><br/>
+                    </CardText>
+                    <CardActions style={{
                         textAlign: 'center'
                     }}>
-                    <Avatar
-                        src="http://app.bambapos.com/images/bambapos_logo.png"
-                        size={80} />
-                    <h3 style={{
-                        margin: 0,
-                        marginTop: 10,
-                        fontWeight: 400
-                    }}>Bambapos</h3>
-                </CardTitle>
-                <CardText>
-                    <TextField
-                      hintText="Type your email"
-                      floatingLabelText="Email"
-                      type="email"
-                      onChange={this.onEmailChanged.bind(this)}
-                    /><br/>
-                    <TextField
-                      hintText="Type your password"
-                      floatingLabelText="Password"
-                      type="password"
-                      onChange={this.onPasswordChanged.bind(this)}
-                    /><br/>
-                </CardText>
-                <CardActions style={{
-                    textAlign: 'center'
-                }}>
-                  {cardActionComponent}
-                  <br />
-                  <span style={{
-                      fontSize: 13,
-                      marginTop: 15,
-                  }}>Don't have an account? <a style={{
-                      textDecoration: 'none'
-                  }} href="#">Sign Up </a></span>
-                </CardActions>
-            </Card>
+                      {cardActionComponent}
+                      <br />
+                      <span style={{
+                          fontSize: 13,
+                          marginTop: 15,
+                      }}>Don't have an account? <a style={{
+                          textDecoration: 'none'
+                      }} href="#">Sign Up </a></span>
+                    </CardActions>
+                </Card>
+            </MuiThemeProvider>
         );
     }
 }

@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 
 import LoginCard from '../login-card';
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Paper } from 'material-ui';
 
 import * as authenticationActions from '../../../actions/authentication-actions';
@@ -27,25 +29,27 @@ class LoginPage extends Component {
 
 
         return (
-            <div style={styles}>
-                <div>
-                    <LoginCard
-                        authentication={authentication}
-                        {...bindActionCreators(authenticationActions, dispatch)} />
-                    <Paper
-                        {...bindActionCreators(authenticationActions, dispatch)}
-                        style={{
-                            textAlign: 'center',
-                            marginTop: 10,
-                            backgroundColor: 'transparent'
-                        }}
-                        zDepth={0}
-                    ><a style={{
-                        textDecoration: 'none',
-                        fontSize: 13
-                    }} href="#">Forgot Password</a></Paper>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div style={styles}>
+                    <div>
+                        <LoginCard
+                            authentication={authentication}
+                            {...bindActionCreators(authenticationActions, dispatch)} />
+                        <Paper
+                            {...bindActionCreators(authenticationActions, dispatch)}
+                            style={{
+                                textAlign: 'center',
+                                marginTop: 10,
+                                backgroundColor: 'transparent'
+                            }}
+                            zDepth={0}
+                        ><a style={{
+                            textDecoration: 'none',
+                            fontSize: 13
+                        }} href="#">Forgot Password</a></Paper>
+                    </div>
                 </div>
-            </div>
+            </MuiThemeProvider>
         );
     }
 }

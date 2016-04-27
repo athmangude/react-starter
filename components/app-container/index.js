@@ -49,7 +49,6 @@ class App extends Component {
         } else {
             return (
                 <div>
-                    <AppBarSignedOut />
                     {this.props.children}
                 </div>
             );

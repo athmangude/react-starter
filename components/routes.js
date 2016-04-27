@@ -3,6 +3,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './app-container';
 import NotFoundPage from './not-found-page';
+import FormsyTest from './formsy-test';
 
 import About from './About';
 import Repos from './Repos';
@@ -29,6 +30,7 @@ module.exports = (
         </Route>
         <Route path="/about" component={About} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/formsy-test" component={FormsyTest} />
         </Route>
         <Route path="*" component={NotFoundPage} />
     </div>

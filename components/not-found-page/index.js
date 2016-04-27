@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 
 import { Paper } from 'material-ui';
 
+const styles = {
+    minHeight: 'calc(100vh - 100px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column'
+}
+
 class NotFoundPage extends Component {
     constructor(props) {
         super(props);
@@ -9,8 +17,9 @@ class NotFoundPage extends Component {
 
     render() {
         return (
-            <Paper>
-                <span>Not Found</span>
+            <Paper style={styles} zDepth={0}>
+                <h4>404</h4>
+                <span>Page Not Found</span>
             </Paper>
         );
     }

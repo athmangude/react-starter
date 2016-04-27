@@ -20,13 +20,17 @@
     "compression": "^1.6.1",
     "express": "^4.13.4",
     "if-env": "^1.0.0",
-    "material-ui": "^0.14.4",
     "npm": "^3.8.7",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
+
+    "formsy-react": "^0.18.0",
+    "formsy-material-ui": "0.4.2",
+    "material-ui": "^0.15.0-beta.1",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-tap-event-plugin": "^1.0.0",
+
     "react-redux": "^4.4.5",
     "react-router": "^2.0.0",
-    "react-tap-event-plugin": "^0.2.2",
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1"
   },

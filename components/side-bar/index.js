@@ -5,7 +5,7 @@ import NavLink from '../nav-link';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Drawer, MenuItem, FontIcon, Colors } from 'material-ui';
+import { Drawer, MenuItem, FontIcon, Colors, List, ListItem } from 'material-ui';
 
 import * as appActions from '../../actions/app-actions';
 
@@ -35,71 +35,98 @@ class SideBar extends React.Component {
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <Drawer
                     onBlur={this.handleToggle}
-                    width={200}
+                    width={240}
                     open={app.isSideBarOpen}
                     docked={false}
                     onRequestChange={open => {this.handleToggle()}}
                 >
+                    <List>
+                        <NavLink
+                            to="/dashboard">
+                            <ListItem primaryText="Dashboard" leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>} />
+                        </NavLink>
+                        <NavLink
+                            to="/transactions">
+                            <ListItem primaryText="Transactions" leftIcon={<FontIcon className="material-icons">payment</FontIcon>} />
+                        </NavLink>
+                        <ListItem
+                            primaryText="Reports"
+                            leftIcon={<FontIcon className="material-icons">equalizer</FontIcon>}
+                            initiallyOpen={false}
+                            primaryTogglesNestedList={true}
+                            nestedItems={[
+                                <ListItem
+                                    key={1}
+                                    primaryText="General Sales"
+                                    leftIcon={<FontIcon className="material-icons">assignment</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={2}
+                                    primaryText="Product Sales"
+                                    leftIcon={<FontIcon className="material-icons">local_mall</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={3}
+                                    primaryText="Branch Sales"
+                                    leftIcon={<FontIcon className="material-icons">store</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={4}
+                                    primaryText="Staff Sales"
+                                    leftIcon={<FontIcon className="material-icons">people_outline</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={5}
+                                    primaryText="Inventory"
+                                    leftIcon={<FontIcon className="material-icons">book</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={6}
+                                    primaryText="Reorder Levels"
+                                    leftIcon={<FontIcon className="material-icons">timeline</FontIcon>}
+                                />,
+                            ]}
+                        />
+                        <ListItem
+                            primaryText="Inventory"
+                            leftIcon={<FontIcon className="material-icons">book</FontIcon>}
+                            initiallyOpen={false}
+                            primaryTogglesNestedList={true}
+                            nestedItems={[
+                                <ListItem
+                                    key={1}
+                                    primaryText="Products"
+                                    leftIcon={<FontIcon className="material-icons">local_mall</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={2}
+                                    primaryText="Categories"
+                                    leftIcon={<FontIcon className="material-icons">local_offer</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={3}
+                                    primaryText="Suppliers"
+                                    leftIcon={<FontIcon className="material-icons">person</FontIcon>}
+                                />,
+                                <ListItem
+                                    key={4}
+                                    primaryText="Outlets"
+                                    leftIcon={<FontIcon className="material-icons">store</FontIcon>}
+                                />,
+                            ]}
+                        />
+                    </List>
                     <NavLink
-                        to="/dashboard">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>dashboard</FontIcon>
-                            Dashboard
-                        </MenuItem>
+                        to="/customers">
+                        <ListItem primaryText="Customers" leftIcon={<FontIcon className="material-icons">people</FontIcon>} />
                     </NavLink>
-                    <NavLink to="/inventory">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>book</FontIcon>
-                            Inventory
-                        </MenuItem>
+                    <NavLink
+                        to="/staff">
+                        <ListItem primaryText="Staff" leftIcon={<FontIcon className="material-icons">people_outline</FontIcon>} />
                     </NavLink>
-                    <NavLink to="/products">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>local_mall</FontIcon>
-                            Products
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/categories">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>local_offer</FontIcon>
-                            Categories
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/suppliers">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>person</FontIcon>
-                            Suppliers
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/outlets">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>store</FontIcon>
-                            Outlets
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/customers">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>people</FontIcon>
-                            Customers
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/reports">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>equalizer</FontIcon>
-                            Reports
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/staff">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>people_outline</FontIcon>
-                            Staff
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to="/settings">
-                        <MenuItem onTouchTap={this.handleToggle}>
-                            <FontIcon className="material-icons" style={iconStyles}>settings</FontIcon>
-                            Settings
-                        </MenuItem>
+                    <NavLink
+                        to="/settings">
+                        <ListItem primaryText="Settings" leftIcon={<FontIcon className="material-icons">settings</FontIcon>} />
                     </NavLink>
                 </Drawer>
             </MuiThemeProvider>

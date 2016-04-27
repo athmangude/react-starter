@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import NavLink from '../nav-link';
 
-import { LeftNav, MenuItem, FontIcon, Colors } from 'material-ui';
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { Drawer, MenuItem, FontIcon, Colors } from 'material-ui';
 
 import * as appActions from '../../actions/app-actions';
 
@@ -30,8 +32,8 @@ class SideBar extends React.Component {
     render() {
         const { app } = this.props;
         return (
-            <div>
-                <LeftNav
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <Drawer
                     onBlur={this.handleToggle}
                     width={200}
                     open={app.isSideBarOpen}
@@ -99,8 +101,8 @@ class SideBar extends React.Component {
                             Settings
                         </MenuItem>
                     </NavLink>
-                </LeftNav>
-            </div>
+                </Drawer>
+            </MuiThemeProvider>
         );
     }
 }

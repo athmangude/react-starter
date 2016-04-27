@@ -8,6 +8,13 @@ import Paper from 'material-ui/lib/paper';
 
 import * as authenticationActions from '../../../actions/authentication-actions';
 
+const styles = {
+    minHeight: 'calc(100vh - 100px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+}
+
 @connect(state => ({authentication: state.authentication}))
 class LoginPage extends Component {
     constructor(props) {
@@ -20,12 +27,7 @@ class LoginPage extends Component {
 
 
         return (
-            <div style={{
-                minHeight: 'calc(100vh - 100px)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-            }}>
+            <div style={styles}>
                 <div>
                     <LoginCard
                         authentication={authentication}

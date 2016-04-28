@@ -20,11 +20,14 @@ const createStoreWithMiddleware = applyMiddleware(socketConnectionMiddleWare, th
 const store = createStoreWithMiddleware(rootReducer,  window.devToolsExtension ? window.devToolsExtension() : f => f);
 openSocket(store);
 
-render(
+const Bambapos = () => (
     <MuiThemeProvider muiTheme={getMuiTheme(appTheme)}>
         <Provider store={store}>
             <Router routes={routes} history={browserHistory} />
         </Provider>
-    </MuiThemeProvider>,
-    document.getElementById('app')
+    </MuiThemeProvider>
+);
+
+render(
+    <Bambapos />, document.getElementById('app')
 );

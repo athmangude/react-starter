@@ -1,7 +1,8 @@
 const initialState = {
     isLoading: true,
-    isSideBarOpen: true,
-    selectedDrawerMenuListItem: 1
+    isSideBarOpen: false,
+    selectedDrawerMenuListItem: 1,
+    title: 'Dashboard'
 }
 
 const app = (state = initialState, action) => {
@@ -9,7 +10,9 @@ const app = (state = initialState, action) => {
         case 'FINISH_LOADING':
             return Object.assign({}, state, { isLoading: false});
         case 'TOGGLE_SIDE_BAR':
-            return Object.assign({}, state, { isSideBarOpen: !state.isSideBarOpen })
+            return Object.assign({}, state, { isSideBarOpen: !state.isSideBarOpen });
+        case 'CHANGE_SELECTED_DRAWER_ITEM':
+            return Object.assign({}, { selectedDrawerMenuListItem: action.index, title: action.title });
         default:
             return state;
     }

@@ -2,9 +2,22 @@ import React, { Component } from 'react';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardText, TextField, Avatar, CircularProgress } from 'material-ui';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardText, TextField, Avatar, CircularProgress} from 'material-ui';
+import {blue500} from 'material-ui/styles/colors';
+import { Link } from 'react-router';
+
+// import { Paper, RaisedButton, MenuItem } from 'material-ui'
+import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
+    FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
+
 
 import Authentication from '../../authentication';
+
+const linkStyles = {
+    textDecoration: 'none',
+    fontSize: 13,
+    color: blue500,
+}
 
 class LoginCard extends Component{
 
@@ -13,7 +26,8 @@ class LoginCard extends Component{
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            canSubmit: false
         }
     }
 
@@ -27,6 +41,26 @@ class LoginCard extends Component{
         this.setState({
             password: event.target.value
         });
+    }
+
+    enableButton() {
+        this.setState({
+          canSubmit: true,
+        });
+    }
+
+    disableButton() {
+        this.setState({
+          canSubmit: false,
+        });
+    }
+
+    submitForm(data) {
+        alert(JSON.stringify(data, null, 4));
+    }
+
+    notifyFormError(data) {
+        console.error('Form error:', data);
     }
 
     onSignInClicked() {
@@ -57,7 +91,7 @@ class LoginCard extends Component{
         if (this.props.authentication.isSigningIn) {
             cardActionComponent = <CircularProgress />
         } else {
-            cardActionComponent = <FlatButton label="Sign In" onClick={this.onSignInClicked.bind(this)} />
+            cardActionComponent = <FlatButton disabled={!this.state.canSubmit} label="Sign In" onClick={this.onSignInClicked.bind(this)} />
         }
 
         return (
@@ -82,18 +116,36 @@ class LoginCard extends Component{
                         }}>Bambapos</h3>
                     </CardTitle>
                     <CardText>
-                        <TextField
-                          hintText="Type your email"
-                          floatingLabelText="Email"
-                          type="email"
-                          onChange={this.onEmailChanged.bind(this)}
-                        /><br/>
-                        <TextField
-                          hintText="Type your password"
-                          floatingLabelText="Password"
-                          type="password"
-                          onChange={this.onPasswordChanged.bind(this)}
-                        /><br/>
+                        <Formsy.Form
+                            onValid={this.enableButton.bind(this)}
+                            onInvalid={this.disableButton.bind(this)}
+                            onValidSubmit={this.submitForm.bind(this)}
+                            onInvalidSubmit={this.notifyFormError.bind(this)}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'column'
+                            }}>
+                            <FormsyText
+                                name="name"
+                                type="email"
+                                validations="isEmail"
+                                validationError={"Provide a valid email"}
+                                required
+                                hintText="type your email"
+                                floatingLabelText="Email"
+                                onChange={this.onEmailChanged.bind(this)} />
+                            <FormsyText
+                              name="password"
+                              type="password"
+                              validations={{minLength: 8}}
+                              validationError={"Password should be at least 8 characters long"}
+                              required
+                              hintText="type your password"
+                              floatingLabelText="Password"
+                              onChange={this.onPasswordChanged.bind(this)} />
+                        </Formsy.Form>
                     </CardText>
                     <CardActions style={{
                         textAlign: 'center'
@@ -103,9 +155,7 @@ class LoginCard extends Component{
                       <span style={{
                           fontSize: 13,
                           marginTop: 15,
-                      }}>Don't have an account? <a style={{
-                          textDecoration: 'none'
-                      }} href="#">Sign Up </a></span>
+                      }}>Don't have an account? <Link to="/signup" style={linkStyles} href="#">Sign Up </Link></span>
                     </CardActions>
                 </Card>
             </MuiThemeProvider>

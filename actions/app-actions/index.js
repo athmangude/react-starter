@@ -13,6 +13,13 @@ export const toggleSideBar = () => {
     }
 }
 
+export const changeSelectedDrawerMenuItem = (index) => {
+    return {
+        type: 'CHANGE_SELECTED_DRAWER_ITEM',
+        index
+    }
+}
+
 export const loadApp = () => {
     return (dispatch) => {
         if (localStorage.getItem('isSignedIn') && localStorage.getItem('user') ) {
@@ -22,5 +29,14 @@ export const loadApp = () => {
         }
 
         return dispatch(finishLoading(false))
+    }
+}
+
+export const routeToIndex = (index) => {
+    return (dispatch) => {
+        setTimeout(function () {
+            console.log('routing to id');
+            return dispatch(changeSelectedDrawerMenuItem(index));
+        }, 400);
     }
 }

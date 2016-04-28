@@ -16,7 +16,7 @@ class AppBarSignedIn extends Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <AppBar
-                    title="Bambapos"
+                    title={this.props.app.title}
                     onLeftIconButtonTouchTap={this.props.handleToggle}
                     iconElementRight={
                         <IconMenu

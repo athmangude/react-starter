@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import App from './app-container';
+import AppContainer from './app-container';
 import NotFoundPage from './not-found-page';
 import FormsyTest from './formsy-test';
 
@@ -23,7 +23,7 @@ function requireAuth(nextState, replace) {
 
 module.exports = (
     <div>
-        <Route path="/" component={App}>
+        <Route path="/" component={AppContainer}>
         <IndexRoute component={Home} onEnter={requireAuth} />
         <Route path="/repos" component={Repos}>
         <Route path="/repos/:userName/:repoName" component={Repo} />

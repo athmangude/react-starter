@@ -75,7 +75,7 @@ class AppDrawer extends React.Component {
                     onRequestChange={open => {this.handleToggle()}}
                 >
                     <SelectableList
-                        defaultValue={5}
+                        defaultValue={1}
                         app={app}
                         {...bindActionCreators(appActions, dispatch)} >
                         <ListItem

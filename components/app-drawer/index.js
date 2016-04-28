@@ -18,35 +18,37 @@ const iconStyles = {
 };
 
 function wrapState(ComposedComponent) {
-  return class SelectableList extends React.Component {
-    static propTypes = {
-      children: React.PropTypes.node.isRequired,
-      defaultValue: React.PropTypes.number.isRequired,
+    return class SelectableList extends React.Component {
+        static propTypes = {
+            children: React.PropTypes.node.isRequired,
+            defaultValue: React.PropTypes.number.isRequired,
+        };
+
+        componentWillMount() {
+            this.setState({
+                selectedIndex: this.props.defaultValue,
+            });
+        }
+
+        handleRequestChange = (event, index) => {
+            this.setState({
+                selectedIndex: index,
+            });
+
+            this.props.routeToIndex(index);
+        };
+
+        render() {
+            return (
+                <ComposedComponent
+                    value={this.state.selectedIndex}
+                    onChange={this.handleRequestChange}
+                >
+                    {this.props.children}
+                </ComposedComponent>
+            );
+        }
     };
-
-    componentWillMount() {
-      this.setState({
-        selectedIndex: this.props.defaultValue,
-      });
-    }
-
-    handleRequestChange = (event, index) => {
-      this.setState({
-        selectedIndex: index,
-      });
-    };
-
-    render() {
-      return (
-        <ComposedComponent
-          value={this.state.selectedIndex}
-          onChange={this.handleRequestChange}
-        >
-          {this.props.children}
-        </ComposedComponent>
-      );
-    }
-  };
 }
 
 SelectableList = wrapState(SelectableList);
@@ -62,7 +64,7 @@ class AppDrawer extends React.Component {
     }
 
     render() {
-        const { app } = this.props;
+        const { app, dispatch } = this.props;
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <Drawer
@@ -74,7 +76,8 @@ class AppDrawer extends React.Component {
                 >
                     <SelectableList
                         defaultValue={5}
-                        onChange={console.log('request change')}>
+                        app={app}
+                        {...bindActionCreators(appActions, dispatch)} >
                         <ListItem
                             primaryText="Dashboard"
                             value={1}

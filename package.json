@@ -19,18 +19,17 @@
     "babel-plugin-transform-runtime": "^6.7.5",
     "compression": "^1.6.1",
     "express": "^4.13.4",
-    "if-env": "^1.0.0",
-    "npm": "^3.8.7",
-
-    "formsy-react": "^0.18.0",
     "formsy-material-ui": "0.4.2",
+    "formsy-react": "^0.18.0",
+    "if-env": "^1.0.0",
     "material-ui": "^0.15.0-beta.1",
+    "npm": "^3.8.7",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-tap-event-plugin": "^1.0.0",
-
     "react-redux": "^4.4.5",
     "react-router": "^2.0.0",
+    "react-router-redux": "^4.0.4",
+    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.5.2",
     "redux-thunk": "^2.0.1"
   },

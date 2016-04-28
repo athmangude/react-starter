@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Paper } from 'material-ui';
 
 const styles = {
@@ -19,12 +17,10 @@ class NotFoundPage extends Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <Paper style={styles} zDepth={0}>
-                    <h4>404</h4>
-                    <span>Page Not Found</span>
-                </Paper>
-            </MuiThemeProvider>
+            <Paper style={styles} zDepth={0}>
+                <h4>404</h4>
+                <span>Page Not Found</span>
+            </Paper>
         );
     }
 }

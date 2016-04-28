@@ -1,7 +1,7 @@
 import React from 'react';
 import Formsy from 'formsy-react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Paper, RaisedButton, MenuItem } from 'material-ui'
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
@@ -73,7 +73,7 @@ const FormsyTest = React.createClass({
     let { wordsError, numericError, urlError } = this.errorMessages;
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <div>
         <Paper style={paperStyle}>
           <Formsy.Form
             onValid={this.enableButton}
@@ -160,7 +160,7 @@ const FormsyTest = React.createClass({
             />
           </Formsy.Form>
         </Paper>
-      </MuiThemeProvider>
+      </div>
     );
   },
 });

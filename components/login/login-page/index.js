@@ -4,8 +4,6 @@ import { bindActionCreators } from 'redux';
 
 import LoginCard from '../login-card';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Paper } from 'material-ui';
 import {blue500} from 'material-ui/styles/colors';
 import { Link } from 'react-router';
@@ -37,24 +35,22 @@ class LoginPage extends Component {
 
 
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div style={styles}>
-                    <div>
-                        <LoginCard
-                            authentication={authentication}
-                            {...bindActionCreators(authenticationActions, dispatch)} />
-                        <Paper
-                            {...bindActionCreators(authenticationActions, dispatch)}
-                            style={{
-                                textAlign: 'center',
-                                marginTop: 10,
-                                backgroundColor: 'transparent'
-                            }}
-                            zDepth={0}
-                        ><Link style={linkStyles} to="/forgot-password">Forgot Password</Link></Paper>
-                    </div>
+            <div style={styles}>
+                <div>
+                    <LoginCard
+                        authentication={authentication}
+                        {...bindActionCreators(authenticationActions, dispatch)} />
+                    <Paper
+                        {...bindActionCreators(authenticationActions, dispatch)}
+                        style={{
+                            textAlign: 'center',
+                            marginTop: 10,
+                            backgroundColor: 'transparent'
+                        }}
+                        zDepth={0}
+                    ><Link style={linkStyles} to="/forgot-password">Forgot Password</Link></Paper>
                 </div>
-            </MuiThemeProvider>
+            </div>
         );
     }
 }

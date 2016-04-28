@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import { CircularProgress, Paper } from 'material-ui';
 
 class AppLoading extends Component {
     render () {
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <div>
                 <div style={{
                     height: '100vh',
                     display: 'flex',
@@ -27,7 +25,7 @@ class AppLoading extends Component {
                         <span>Loading Bambapos</span>
                     </Paper>
                 </div>
-            </MuiThemeProvider>
+            </div>
         );
     }
 }

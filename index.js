@@ -6,6 +6,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { routerMiddleware } from 'react-router-redux'
 
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import appTheme from './appTheme';
+
 import rootReducer from './reducers';
 
 import openSocket, { socketConnectionMiddleWare } from './components/socket-connection';
@@ -17,8 +21,10 @@ const store = createStoreWithMiddleware(rootReducer,  window.devToolsExtension ?
 openSocket(store);
 
 render(
-    <Provider store={store}>
-        <Router routes={routes} history={browserHistory} />
-    </Provider>,
+    <MuiThemeProvider muiTheme={getMuiTheme(appTheme)}>
+        <Provider store={store}>
+            <Router routes={routes} history={browserHistory} />
+        </Provider>
+    </MuiThemeProvider>,
     document.getElementById('app')
 );

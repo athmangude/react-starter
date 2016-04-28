@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, FlatButton, CardText, TextField, Avatar, CircularProgress} from 'material-ui';
 import {blue500} from 'material-ui/styles/colors';
 import { Link } from 'react-router';
@@ -96,7 +94,7 @@ class LoginCard extends Component{
         }
 
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <div>
                 <Card style={{
                     marginLeft: 20,
                     marginRight: 20,
@@ -161,7 +159,7 @@ class LoginCard extends Component{
                       }}>Don't have an account? <Link to="/signup" style={linkStyles} href="#">Sign Up </Link></span>
                     </CardActions>
                 </Card>
-            </MuiThemeProvider>
+            </div>
         );
     }
 }

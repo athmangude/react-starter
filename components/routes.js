@@ -24,14 +24,14 @@ function requireAuth(nextState, replace) {
 module.exports = (
     <div>
         <Route path="/" component={AppContainer}>
-        <IndexRoute component={Home} onEnter={requireAuth} />
-        <Route path="/repos" component={Repos}>
-        <Route path="/repos/:userName/:repoName" component={Repo} />
-        </Route>
-        <Route path="/about" component={About} />
-        <Route path="/login" component={LoginPage} />
-        <Route path="/formsy-test" component={FormsyTest} />
-        </Route>
+            <IndexRoute component={Home} onEnter={requireAuth} />
+            <Route path="/repos" component={Repos}>
+                <Route path="/repos/:userName/:repoName" component={Repo} />
+            </Route>
+            <Route path="/about" component={About} />
+            <Route path="/login" component={LoginPage} />
+            <Route path="/formsy-test" component={FormsyTest} />
+            </Route>
         <Route path="*" component={NotFoundPage} />
     </div>
 );

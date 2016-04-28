@@ -7,6 +7,8 @@ import LoginCard from '../login-card';
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Paper } from 'material-ui';
+import {blue500} from 'material-ui/styles/colors';
+import { Link } from 'react-router';
 
 import * as authenticationActions from '../../../actions/authentication-actions';
 
@@ -16,6 +18,12 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'center'
 }
+
+const linkStyles = {
+    textDecoration: 'none',
+    fontSize: 13,
+    color: blue500
+};
 
 @connect(state => ({authentication: state.authentication}))
 class LoginPage extends Component {
@@ -43,10 +51,7 @@ class LoginPage extends Component {
                                 backgroundColor: 'transparent'
                             }}
                             zDepth={0}
-                        ><a style={{
-                            textDecoration: 'none',
-                            fontSize: 13
-                        }} href="#">Forgot Password</a></Paper>
+                        ><Link style={linkStyles} to="/forgot-password">Forgot Password</Link></Paper>
                     </div>
                 </div>
             </MuiThemeProvider>

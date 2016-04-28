@@ -5,9 +5,11 @@ import NavLink from '../nav-link';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Drawer, MenuItem, FontIcon, Colors, List, ListItem } from 'material-ui';
+import { Drawer, MenuItem, FontIcon, Colors, List, ListItem, MakeSelectable } from 'material-ui';
 
 import * as appActions from '../../actions/app-actions';
+
+let SelectableList = MakeSelectable(List);
 
 const iconStyles = {
     marginRight: 12,
@@ -15,14 +17,44 @@ const iconStyles = {
     top: 6
 };
 
+function wrapState(ComposedComponent) {
+  return class SelectableList extends React.Component {
+    static propTypes = {
+      children: React.PropTypes.node.isRequired,
+      defaultValue: React.PropTypes.number.isRequired,
+    };
+
+    componentWillMount() {
+      this.setState({
+        selectedIndex: this.props.defaultValue,
+      });
+    }
+
+    handleRequestChange = (event, index) => {
+      this.setState({
+        selectedIndex: index,
+      });
+    };
+
+    render() {
+      return (
+        <ComposedComponent
+          value={this.state.selectedIndex}
+          onChange={this.handleRequestChange}
+        >
+          {this.props.children}
+        </ComposedComponent>
+      );
+    }
+  };
+}
+
+SelectableList = wrapState(SelectableList);
+
 @connect(state => ({app: state.app}))
 class AppDrawer extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            open: true
-        }
     }
 
     handleToggle = () => {
@@ -40,48 +72,49 @@ class AppDrawer extends React.Component {
                     docked={false}
                     onRequestChange={open => {this.handleToggle()}}
                 >
-                    <List>
-                        <NavLink
-                            to="/dashboard">
-                            <ListItem primaryText="Dashboard" leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>} />
-                        </NavLink>
-                        <NavLink
-                            to="/transactions">
-                            <ListItem primaryText="Transactions" leftIcon={<FontIcon className="material-icons">payment</FontIcon>} />
-                        </NavLink>
+                    <SelectableList
+                        defaultValue={5}
+                        onChange={console.log('request change')}>
+                        <ListItem
+                            primaryText="Dashboard"
+                            value={1}
+                            leftIcon={<FontIcon className="material-icons">dashboard</FontIcon>}
+                        />
+                        <ListItem primaryText="Transactions" value={2} leftIcon={<FontIcon className="material-icons">payment</FontIcon>} />
                         <ListItem
                             primaryText="Reports"
+                            value={3}
                             leftIcon={<FontIcon className="material-icons">equalizer</FontIcon>}
                             initiallyOpen={false}
                             primaryTogglesNestedList={true}
                             nestedItems={[
                                 <ListItem
-                                    key={1}
+                                    value={4}
                                     primaryText="General Sales"
                                     leftIcon={<FontIcon className="material-icons">assignment</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={2}
+                                    value={5}
                                     primaryText="Product Sales"
                                     leftIcon={<FontIcon className="material-icons">local_mall</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={3}
+                                    value={6}
                                     primaryText="Branch Sales"
                                     leftIcon={<FontIcon className="material-icons">store</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={4}
+                                    value={7}
                                     primaryText="Staff Sales"
                                     leftIcon={<FontIcon className="material-icons">people_outline</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={5}
+                                    value={8}
                                     primaryText="Inventory"
                                     leftIcon={<FontIcon className="material-icons">book</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={6}
+                                    value={9}
                                     primaryText="Reorder Levels"
                                     leftIcon={<FontIcon className="material-icons">timeline</FontIcon>}
                                 />,
@@ -89,45 +122,37 @@ class AppDrawer extends React.Component {
                         />
                         <ListItem
                             primaryText="Inventory"
+                            value={10}
                             leftIcon={<FontIcon className="material-icons">book</FontIcon>}
                             initiallyOpen={false}
                             primaryTogglesNestedList={true}
                             nestedItems={[
                                 <ListItem
-                                    key={1}
+                                    value={11}
                                     primaryText="Products"
                                     leftIcon={<FontIcon className="material-icons">local_mall</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={2}
+                                    value={12}
                                     primaryText="Categories"
                                     leftIcon={<FontIcon className="material-icons">local_offer</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={3}
+                                    value={13}
                                     primaryText="Suppliers"
                                     leftIcon={<FontIcon className="material-icons">person</FontIcon>}
                                 />,
                                 <ListItem
-                                    key={4}
+                                    value={14}
                                     primaryText="Outlets"
                                     leftIcon={<FontIcon className="material-icons">store</FontIcon>}
                                 />,
                             ]}
                         />
-                    </List>
-                    <NavLink
-                        to="/customers">
-                        <ListItem primaryText="Customers" leftIcon={<FontIcon className="material-icons">people</FontIcon>} />
-                    </NavLink>
-                    <NavLink
-                        to="/staff">
-                        <ListItem primaryText="Staff" leftIcon={<FontIcon className="material-icons">people_outline</FontIcon>} />
-                    </NavLink>
-                    <NavLink
-                        to="/settings">
-                        <ListItem primaryText="Settings" leftIcon={<FontIcon className="material-icons">settings</FontIcon>} />
-                    </NavLink>
+                        <ListItem primaryText="Customers" value={15} leftIcon={<FontIcon className="material-icons">people</FontIcon>} />
+                        <ListItem primaryText="Staff" value={16} leftIcon={<FontIcon className="material-icons">people_outline</FontIcon>} />
+                        <ListItem primaryText="Settings" value={17} leftIcon={<FontIcon className="material-icons">settings</FontIcon>} />
+                    </SelectableList>
                 </Drawer>
             </MuiThemeProvider>
         );

@@ -1,12 +1,12 @@
-import {
-cyan500, blue500, cyan700,
-grey100, grey300, grey400, grey500,
-pinkA200,
-white, darkBlack, fullBlack,
-} from 'material-ui/styles/colors';
-import ColorManipulator from 'material-ui/utils/colorManipulator';
+'use strict';
 
-export const appTheme = {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
   spacing: {
     iconSize: 24,
     desktopGutter: 24,
@@ -22,19 +22,19 @@ export const appTheme = {
   },
   fontFamily: 'Roboto, sans-serif',
   palette: {
-    primary1Color: blue500,
-    primary2Color: blue500,
-    primary3Color: grey400,
-    accent1Color: pinkA200,
-    accent2Color: grey100,
-    accent3Color: grey500,
-    textColor: darkBlack,
-    alternateTextColor: white,
-    canvasColor: white,
-    borderColor: grey300,
-    // disabledColor: ColorManipulator.fade(darkBlack, 0.3),
-    pickerHeaderColor: blue500,
-    // clockCircleColor: ColorManipulator.fade(darkBlack, 0.07),
-    shadowColor: fullBlack,
-  },
+    primary1Color: '#2196F3',
+    primary2Color: '#1976D2',
+    primary3Color: '#757575',
+    accent1Color: '#FFD740',
+    accent2Color: '#FFC400',
+    accent3Color: '#FFE57F',
+    textColor: '#212121',
+    alternateTextColor: 'white',
+    canvasColor: 'white',
+    borderColor: '#E0E0E0',
+    disabledColor: 'rgba(0, 0, 0, 0.3)',
+    pickerHeaderColor: '#2196F3',
+    clockCircleColor: 'rgba(0, 0, 0, 0.1)',
+    shadowColor: '#000',
+  }
 };

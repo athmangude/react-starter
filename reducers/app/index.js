@@ -1,6 +1,7 @@
 const initialState = {
     isLoading: true,
-    isSideBarOpen: true
+    isSideBarOpen: true,
+    selectedDrawerMenuListItem: 1
 }
 
 const app = (state = initialState, action) => {

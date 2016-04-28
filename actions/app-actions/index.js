@@ -15,10 +15,11 @@ export const toggleSideBar = () => {
     }
 }
 
-export const changeSelectedDrawerMenuListItem = (index) => {
+export const changeSelectedDrawerMenuListItem = (index, title) => {
     return {
         type: 'CHANGE_SELECTED_DRAWER_ITEM',
-        index
+        index,
+        title
     }
 }
 
@@ -37,67 +38,88 @@ export const loadApp = () => {
 export const routeToIndex = (index) => {
     return (dispatch) => {
         setTimeout(function () {
-            console.log('routing to id');
-            dispatch(changeSelectedDrawerMenuItem(index));
-
             let path = null;
+            let title = null;
             switch (index) {
                 case 1:
                     path = '/dashboard';
+                    title = 'Dashboard';
                     break;
                 case 2:
                     path = '/transactions';
+                    title = 'Transactions';
                     break;
                 case 3:
                     path = '/reports';
+                    title = 'Reports';
                     break;
                 case 4:
                     path = '/reports/general-sales';
+                    title = 'Reports: General sales';
                     break;
                 case 5:
                     path = '/reports/product-sales';
+                    title = 'Reports: Product sales';
                     break;
                 case 6:
                     path = '/reports/branch-sales';
+                    title = 'Reports: Branch sales';
                     break;
                 case 7:
                     path = '/reports/staff';
+                    title = 'Reports: Staff sales';
                     break;
                 case 8:
                     path = '/reports/inventory';
+                    title = 'Reports: Inventory';
                     break;
                 case 9:
                     path = '/reports/reorder-levels';
+                    title = 'Reports: Reorder levels';
                     break;
                 case 10:
                     path = '/inventory';
+                    title = 'Inventory';
                     break;
                 case 11:
                     path = '/inventory/products';
+                    title = 'Inventory: Products';
                     break;
                 case 12:
                     path = '/inventory/categories';
+                    title = 'Inventory: Categories';
                     break;
                 case 13:
                     path = '/inventory/suppliers';
+                    title = 'Inventory: Suppliers';
                     break;
                 case 14:
                     path = '/inventory/outlets';
+                    title = 'Inventory: Outlets';
                     break;
                 case 15:
                     path = '/customers';
+                    title = 'Customers';
                     break;
                 case 16:
                     path = '/staff';
+                    title = 'Staff';
                     break;
                 case 17:
                     path = '/settings';
+                    title = 'Settings';
                     break;
                 default:
                     path = '/404';
             }
 
+            if (path === null || path === '/404') {
+                return dispatch(push(path));
+            }
+
+            dispatch(changeSelectedDrawerMenuListItem(index, title));
             dispatch(push(path));
-        }, 400);
+            return;
+        }, 500);
     }
 }

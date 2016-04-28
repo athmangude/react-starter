@@ -15,7 +15,7 @@ import Authentication from './authentication';
 function requireAuth(nextState, replace) {
     if (!Authentication.isLoggedIn()) {
         replace({
-            pathname: '/login',
+            pathname: '/sign-in',
             state: { nextPathname: nextState.location.pathname }
         });
     }
@@ -29,7 +29,7 @@ module.exports = (
                 <Route path="/repos/:userName/:repoName" component={Repo} />
             </Route>
             <Route path="/about" component={About} />
-            <Route path="/login" component={LoginPage} />
+            <Route path="/sign-in" component={LoginPage} />
             <Route path="/formsy-test" component={FormsyTest} />
             </Route>
         <Route path="*" component={NotFoundPage} />

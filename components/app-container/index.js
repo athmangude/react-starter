@@ -1,59 +1,29 @@
 import React, {Component} from 'react';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import { AppBar, FlatButton, NavigationClose, IconButton, IconMenu, MenuItem, CircularProgress } from 'material-ui';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import AppLoading from '../loaders/app-loading';
-import AppBarSignedIn from '../app-bar-signed-in';
-import AppBarSignedOut from '../app-bar-signed-out';
-import AppDrawer from '../app-drawer';
-
-import Authentication from '../authentication';
-
-import * as appActions from '../../actions/app-actions';
+import App from '../app';
 
 injectTapEventPlugin();
 
-@connect(state => ({app: state.app ,authentication: state.authentication}))
-class App extends Component {
+const darkMuiTheme = getMuiTheme(darkBaseTheme);
+
+class AppContainer extends Component {
     constructor(props) {
         super(props);
     }
 
-    handleToggle = () => {
-        this.props.dispatch(appActions.toggleSideBar());
-    }
-
-    componentDidMount() {
-        this.props.dispatch(appActions.loadApp());
-    }
-
     render() {
-        if (this.props.app.isLoading) {
-            return (
-                <AppLoading />
-            );
-        } else if (this.props.authentication.isLoggedIn) {
-            return (
-                <div>
-                    <AppBarSignedIn handleToggle={this.handleToggle} />
-                    <AppDrawer />
-                    {this.props.children}
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    {this.props.children}
-                </div>
-            );
-        }
+        return (
+            <MuiThemeProvider muiTheme={darkMuiTheme}>
+                <App handleToggle={this.handleToggle} />
+            </MuiThemeProvider>
+        );
     }
 }
 
-export default App;
+export default AppContainer;

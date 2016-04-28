@@ -30,9 +30,7 @@ class LoginPage extends Component {
     }
 
     render() {
-
         const {authentication, dispatch} = this.props;
-
 
         return (
             <div style={styles}>

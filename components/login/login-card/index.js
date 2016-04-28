@@ -56,7 +56,8 @@ class LoginCard extends Component{
     }
 
     submitForm(data) {
-        alert(JSON.stringify(data, null, 4));
+        this.setState(data)
+        this.props.signIn(data);
     }
 
     notifyFormError(data) {
@@ -91,7 +92,7 @@ class LoginCard extends Component{
         if (this.props.authentication.isSigningIn) {
             cardActionComponent = <CircularProgress />
         } else {
-            cardActionComponent = <FlatButton disabled={!this.state.canSubmit} label="Sign In" onClick={this.onSignInClicked.bind(this)} />
+            cardActionComponent = <FlatButton disabled={!this.state.canSubmit} type="submit" label="Sign In" />
         }
 
         return (
@@ -128,30 +129,32 @@ class LoginCard extends Component{
                                 flexDirection: 'column'
                             }}>
                             <FormsyText
-                                name="name"
+                                name="email"
                                 type="email"
+                                value={this.state.email}
                                 validations="isEmail"
                                 validationError={"Provide a valid email"}
                                 required
                                 hintText="type your email"
                                 floatingLabelText="Email"
-                                onChange={this.onEmailChanged.bind(this)} />
+                                onChange={this.onEmailChanged} />
                             <FormsyText
-                              name="password"
-                              type="password"
-                              validations={{minLength: 8}}
-                              validationError={"Password should be at least 8 characters long"}
-                              required
-                              hintText="type your password"
-                              floatingLabelText="Password"
-                              onChange={this.onPasswordChanged.bind(this)} />
+                                name="password"
+                                type="password"
+                                value={this.state.password}
+                                validations={{minLength: 8}}
+                                validationError={"Password should be at least 8 characters long"}
+                                required
+                                hintText="type your password"
+                                floatingLabelText="Password"
+                                onChange={this.onPasswordChanged} />
+                            <br />
+                            {cardActionComponent}
                         </Formsy.Form>
                     </CardText>
                     <CardActions style={{
                         textAlign: 'center'
                     }}>
-                      {cardActionComponent}
-                      <br />
                       <span style={{
                           fontSize: 13,
                           marginTop: 15,

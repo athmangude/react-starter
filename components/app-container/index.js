@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import appTheme from '../../appTheme'
@@ -11,7 +10,7 @@ import App from '../app';
 
 injectTapEventPlugin();
 
-const darkMuiTheme = getMuiTheme(darkBaseTheme);
+const bambaposTheme = getMuiTheme(appTheme);
 
 class AppContainer extends Component {
     constructor(props) {
@@ -20,7 +19,7 @@ class AppContainer extends Component {
 
     render() {
         return (
-            <MuiThemeProvider muiTheme={darkMuiTheme}>
+            <MuiThemeProvider muiTheme={bambaposTheme}>
                 <App handleToggle={this.handleToggle} />
             </MuiThemeProvider>
         );

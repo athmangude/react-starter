@@ -15,7 +15,7 @@ export const toggleSideBar = () => {
     }
 }
 
-export const changeSelectedDrawerMenuItem = (index) => {
+export const changeSelectedDrawerMenuListItem = (index) => {
     return {
         type: 'CHANGE_SELECTED_DRAWER_ITEM',
         index

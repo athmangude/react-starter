@@ -3,7 +3,7 @@ import * as authenticationActions from '../../actions/authentication-actions';
 let socketConnection = null;
 
 let getSocketUrl = () => {
-    return window.location.host.includes('app.bambapos.com') ? 'ws://91.194.91.50:8090/websocket' : 'ws://178.238.233.77:8090/websocket';
+    return window.location.host.includes('app.bambapos.com') ? 'ws://178.238.233.77:8090/websocket' : 'ws://91.194.91.50:8090/websocket';
 }
 
 let send = (payload) => {

@@ -55,27 +55,27 @@ export const routeToIndex = (index) => {
                     break;
                 case 4:
                     path = '/reports/general-sales';
-                    title = 'Reports: General sales';
+                    title = 'Reports';
                     break;
                 case 5:
                     path = '/reports/product-sales';
-                    title = 'Reports: Product sales';
+                    title = 'Reports';
                     break;
                 case 6:
                     path = '/reports/branch-sales';
-                    title = 'Reports: Branch sales';
+                    title = 'Reports';
                     break;
                 case 7:
                     path = '/reports/staff';
-                    title = 'Reports: Staff sales';
+                    title = 'Reports';
                     break;
                 case 8:
                     path = '/reports/inventory';
-                    title = 'Reports: Inventory';
+                    title = 'Reports';
                     break;
                 case 9:
                     path = '/reports/reorder-levels';
-                    title = 'Reports: Reorder levels';
+                    title = 'Reports';
                     break;
                 case 10:
                     path = '/inventory';
@@ -83,19 +83,19 @@ export const routeToIndex = (index) => {
                     break;
                 case 11:
                     path = '/inventory/products';
-                    title = 'Inventory: Products';
+                    title = 'Inventory';
                     break;
                 case 12:
                     path = '/inventory/categories';
-                    title = 'Inventory: Categories';
+                    title = 'Inventory';
                     break;
                 case 13:
                     path = '/inventory/suppliers';
-                    title = 'Inventory: Suppliers';
+                    title = 'Inventory';
                     break;
                 case 14:
                     path = '/inventory/outlets';
-                    title = 'Inventory: Outlets';
+                    title = 'Inventory';
                     break;
                 case 15:
                     path = '/customers';

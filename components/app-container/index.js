@@ -20,7 +20,7 @@ class AppContainer extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={bambaposTheme}>
-                <App handleToggle={this.handleToggle} />
+                <App handleToggle={this.handleToggle}>{this.props.children}</App>
             </MuiThemeProvider>
         );
     }

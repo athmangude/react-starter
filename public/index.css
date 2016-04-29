@@ -7,8 +7,3 @@ body {
 .active {
     color: green;
 }
-
-div[class^="col"] {
-    padding-left: 7;
-    padding-right: 7;
-}

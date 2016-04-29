@@ -40,7 +40,9 @@ class App extends Component {
                 <div>
                     <AppBarSignedIn handleToggle={this.handleToggle} />
                     <AppDrawer />
-                    {this.props.children}
+                    <div style={{margin: 10}}>
+                        {this.props.children}
+                    </div>
                 </div>
             );
         } else {

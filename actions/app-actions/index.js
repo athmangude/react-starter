@@ -24,14 +24,12 @@ export const changeSelectedDrawerMenuListItem = (index, title) => {
 
 export const loadApp = () => {
     return (dispatch) => {
-        setTimeout(function () {
-            if (localStorage.getItem('isSignedIn') && localStorage.getItem('user') ) {
-                dispatch(finishLoading());
-                dispatch(authenticationActions.completeSignIn(JSON.parse(localStorage.getItem('user'))));
-                return;
-            }
-            return dispatch(finishLoading())
-        }, 100);
+        if (localStorage.getItem('isSignedIn') && localStorage.getItem('user') ) {
+            dispatch(finishLoading());
+            dispatch(authenticationActions.completeSignIn(JSON.parse(localStorage.getItem('user'))));
+            return;
+        }
+        return dispatch(finishLoading());
     }
 }
 

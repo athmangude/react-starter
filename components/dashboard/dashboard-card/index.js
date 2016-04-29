@@ -5,7 +5,7 @@ import {Card, CardTitle, CardText} from 'material-ui/Card';
 const cardStyles = {
     marginBottom: 10,
     textAlign: 'center',
-    padding: 30
+    padding: 30,
 }
 
 class DashboardCard extends Component {

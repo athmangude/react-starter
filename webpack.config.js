@@ -4,7 +4,12 @@ var path = require('path');
 module.exports = {
   devtool: 'source-map',
 
-  entry: './index.js',
+  // entry: './index.js',
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './index.js',
+  ],
 
   output: {
     path: 'public',
@@ -17,7 +22,9 @@ module.exports = {
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin()
-  ] : [],
+  ] : [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -36,7 +43,7 @@ module.exports = {
         include: path.join(__dirname, 'components')
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel',
         query: {

@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
+import { Paper } from 'material-ui';
+
+import CardsWrapper from './cards-wrapper';
+import DashboardCard from './dashboard-card';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -8,23 +12,17 @@ class Dashboard extends Component {
 
     render () {
         return (
-            <Grid>
+            <Grid fluid={true}>
                 <Row>
-                    <Col xs={12} md={8}><code>&lt;{'Col xs={12} md={8}'} /&gt;</code></Col>
-                    <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
-                </Row>
-                <Row>
-                  <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
-                  <Col xs={6} md={4}><code>&lt;{'Col xs={6} md={4}'} /&gt;</code></Col>
-                  <Col xsHidden md={4}><code>&lt;{'Col xsHidden md={4}'} /&gt;</code></Col>
-                </Row>
-                <Row>
-                  <Col xs={6} xsOffset={6}><code>&lt;{'Col xs={6} xsOffset={6}'} /&gt;</code></Col>
-                </Row>
-
-                <Row>
-                  <Col md={6} mdPush={6}><code>&lt;{'Col md={6} mdPush={6}'} /&gt;</code></Col>
-                  <Col md={6} mdPull={6}><code>&lt;{'Col md={6} mdPull={6}'} /&gt;</code></Col>
+                    <Col lg={3} md={4} sm={6} xs={12}>
+                        <DashboardCard title={"Total Sales"} value={"8,904,940.00"} className="col-lg-3 col-md-4 col-sm-6 col-xs-12" />
+                    </Col>
+                    <Col lg={3} md={4} sm={6} xs={12}>
+                        <DashboardCard title={"Total Sales"} value={"8,904,940.00"} className="col-lg-3 col-md-4 col-sm-6 col-xs-12" />
+                    </Col>
+                    <Col lg={3} md={4} sm={6} xs={12}>
+                        <DashboardCard title={"Total Sales"} value={"8,904,940.00"} className="col-lg-3 col-md-4 col-sm-6 col-xs-12" />
+                    </Col>
                 </Row>
             </Grid>
         )
